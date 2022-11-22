@@ -109,11 +109,17 @@ window.answers = () => {
 
     // #11 Complete this function so that it returns the product of the three numbers (the three numbers multiplied together)
     function product (num1, num2, num3) {
+        return num1 * num2 * num3
 
     }
 
     // #12 Write a function called 'exclaim' that takes a single string and logs it with an exclamation mark after it
     // For example, exclaim("hello") should log "hello!" to the console
+
+    function exclaim (toExclaim){
+        
+        console.log(toExclaim+"!")
+      }
 
 
     // #13 We would like "A", "B", "C", "D", "E" to be printed in the correct order.
