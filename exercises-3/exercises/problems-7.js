@@ -10,6 +10,23 @@
 */
 
 function encrypt(text, n) {
+
+    if (!text || n <=0){
+        return text;
+    }
+
+    while(n--){
+        let ans = ''
+        for (let i=1; i<text.length;i+=2){
+            ans+=text[i]
+        }
+
+        for (let i = 0; i<text.length; i+=2){
+            ans+=text[i]
+        }
+        text = ans;
+    }
+    return text
     
 }
 
@@ -23,6 +40,19 @@ function encrypt(text, n) {
 */
 
 function decrypt(cipherText, n) {
+    if (!cipherText || n <= 0) return cipherText;
+  const ans = new Array(cipherText.length);
+  while (n--) {
+    let j = 0;
+    for (let i = 1; i < ans.length; i += 2) {
+      ans[i] = cipherText[j++];
+    }
+    for (let i = 0; i < ans.length; i += 2) {
+      ans[i] = cipherText[j++];
+    }
+    cipherText = ans.join('');
+  }
+  return cipherText;
     
 }
 
