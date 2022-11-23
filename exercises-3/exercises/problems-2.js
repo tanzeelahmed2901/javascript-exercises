@@ -5,7 +5,10 @@
 */
 
 function sumTwoSmallestNumbers(nums) {
-    
+
+    let sortedArray = nums.sort((a,b)=>a-b)
+    return sortedArray[0]+sortedArray[1]
+  
 }
 
 // Do not modify this code
