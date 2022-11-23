@@ -6,7 +6,8 @@
 
 function sumTwoSmallestNumbers(nums) {
 
-    let sortedArray = nums.sort((a,b)=>a-b)
+    let positiveArray = nums.filter((x)=> x >-1)
+    let sortedArray = positiveArray.sort((a,b)=>a-b)
     return sortedArray[0]+sortedArray[1]
   
 }
