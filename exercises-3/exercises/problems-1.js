@@ -15,12 +15,8 @@ function isSortedAndHow(nums) {
         break;
       }
       if (nums[i] < nums[i + 1]) {
-        console.log(nums[i])
-        console.log(nums[i + 1])
         isAscending = true
       } else if (nums[i] > nums[i + 1]) {
-        console.log(nums[i])
-        console.log(nums[i + 1])
         isDescending = true
       }
     }
