@@ -81,8 +81,6 @@ window.answers = () => {
     // By starting with 1 and 1, the first 10 terms will be: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55
     // Find the largest Fibonacci below 5000 and store it in bigFib
     let bigFib
-    let n1 = 1
-    let n2 = 1
     // Solution goes here:
 
     let fib1 = 1
@@ -105,6 +103,34 @@ window.answers = () => {
     let b
     let c
     // Solution goes here:
+    for(a = 1; a<=1000/3; a++){
+
+        for(b=a+1; b<=1000/2; b++){
+
+            c = 1000 - a - b
+
+            if((a*a + b*b == c*c) && (a + b + c == 1000)){
+
+                a2 = a
+
+                b2 = b
+
+                c2 = c
+
+                break;
+
+            }
+
+        }
+
+    }
+
+    a = a2
+
+    b = b2
+
+    c = c2
+    
 
 
     // #11 Complete this function so that it returns the product of the three numbers (the three numbers multiplied together)
@@ -117,7 +143,6 @@ window.answers = () => {
     // For example, exclaim("hello") should log "hello!" to the console
 
     function exclaim (toExclaim){
-        
         console.log(toExclaim+"!")
       }
 
@@ -148,11 +173,24 @@ window.answers = () => {
         console.log("E")
     }
     // Invoke your chosen function(s) after this line:
+    theFirst()
+    theThird()
 
 
     // #14 Write a function called largestCommonFactor that takes two number
     // and returns the largest common factor of those numbers
-    function largestCommonFactor () {
+    function largestCommonFactor (number1, number2) {
+        
+        let lcf
+        for(let i = number1; i >=0 ; i--){
+
+            if(number1 % i == 0 && number2 % i == 0){
+                lcf = i
+                break;
+            }
+        }
+
+        return lcf
 
     }
 
