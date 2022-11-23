@@ -8,6 +8,31 @@
 */
 
 function findUnique(input) {
+
+    // Iterate over every element
+    for (let i = 0; i < input.length; i++) {
+ 
+        // Initialize count to 0
+        let count = 0;
+ 
+        for (let j = 0; j < input.length; j++) {
+ 
+            // Count the frequency
+            // of the element
+            if (input[i] == input[j]) {
+                count++;
+            }
+        }
+ 
+        // if the frequency of the
+        // element is one
+        if (count == 1) {
+            return input[i];
+        }
+    }
+ 
+    // if no element exist at most once
+    return -1;
     
 }
 

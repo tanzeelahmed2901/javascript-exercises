@@ -9,9 +9,22 @@
     the sum of left side of the index ({1,2,3}) and the sum of the right side of the index ({3,2,1}) both equal 6.
 */
 
-function findEvenIndex(arr) {
-    
-}
+function findEvenIndex(arr){
+    for (var i=0; i<arr.length; i++){
+        var left = 0;
+      var right = 0;
+       for (var j=i; j<=arr.length-1; j++){
+        right = right + arr[j];
+      }
+      for (var k=0; k<=i; k++){
+        left = left + arr[k];
+      }
+      if (right == left){
+        return i;
+      }
+    }
+    return -1;
+  }
 
 // Do not modify this code
 window.solutions = window.solutions || {}
