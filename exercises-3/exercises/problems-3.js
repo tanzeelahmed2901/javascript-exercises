@@ -8,7 +8,16 @@
 */
 
 function duplicateEncode(word) {
-    
+    let newString = '';
+    const lowerCase = word.toLowerCase();
+    [...lowerCase].forEach((e, i) => {
+   if (lowerCase.indexOf(e) !== i) {
+      newString += ')';
+    } else if (lowerCase.lastIndexOf(e) !== i ) {
+      newString += ')';
+    } else newString += '(';
+  });
+  return newString;
 }
 
 // Do not modify this code
