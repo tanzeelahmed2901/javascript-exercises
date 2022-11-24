@@ -1,5 +1,4 @@
 // Make your changes to store and update game state in this file
-// After winner is made disable the final cells
 
 let gameGrid = [
     [null, null, null], 
@@ -10,6 +9,8 @@ let gameGrid = [
 let nought = 'nought'
 let cross = 'cross'
 let turn = 0
+let gameOver = false
+let illegalMove = false
 
 function currentPlayer() {
     return turn % 2 === 0 ? nought : cross;
@@ -19,14 +20,22 @@ function currentPlayer() {
 // (inclusive) and update the game state.
 function takeTurn(row, column) {
     console.log("takeTurn was called with row: "+row+", column:"+column);
+
+    if(gameOver === true){
+        turn = 0
+        alert("Game over! Please reset to play again :)")
+        return false
+    }
     
     if(gameGrid[row][column]==null){
+        illegalMove = false
         if(currentPlayer() === nought){
             gameGrid[row][column] = nought
         }else{
             gameGrid[row][column] = cross
         }
     }else{
+        illegalMove = true
         alert("Illegal move. Try again.")
     }
     
@@ -42,33 +51,41 @@ function checkWinner() {
     console.log("checkWinner was called");
     
     // for loop to check columns and rows 
-    console.log('turn: '+turn)
+    console.log('turn: '+currentPlayer())
     for (let i = 0; i< 3; i++){
 
         if(gameGrid[i][0] === gameGrid[i][1] && gameGrid[i][0] === gameGrid[i][2] && gameGrid[i][0] != null){
+            gameOver = true
             return GetWinner()
         }
 
         if(gameGrid[0][i] === gameGrid[1][i] && gameGrid[0][i] === gameGrid[2][i] && gameGrid[0][i] != null){
+            gameOver = true
             return GetWinner()
         }
     }
 
     //check diagnols 
     if(gameGrid[0][0] === gameGrid[1][1] && gameGrid[0][0] === gameGrid[2][2] && gameGrid[0][0] != null) {
+        gameOver = true
         return GetWinner()
     }
 
     if(gameGrid[0][2] === gameGrid[1][1] && gameGrid[0][2] === gameGrid[2][0] && gameGrid[0][2] != null) {
+        gameOver = true
         return GetWinner()
     }
 
+    //tie game
     if (turn === 8){
+        gameOver = true
         return "nobody"
     }
 
-    turn++
-
+    if(!illegalMove){ //only increase turn count if legal move
+        turn++
+    }
+    
     return null;
 }
 
