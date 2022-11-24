@@ -1,10 +1,5 @@
 // Make your changes to store and update game state in this file
-
-const emptyGrid = [
-    [null, null, null], 
-    [null, null, null], 
-    [null, null, null]
-]
+// After winner is made disable the final cells
 
 let gameGrid = [
     [null, null, null], 
@@ -37,6 +32,10 @@ function takeTurn(row, column) {
     
 }
 
+function GetWinner(){
+    return currentPlayer() === nought ? "noughts" : "crosses"
+}
+
 // Return either "noughts", "crosses" or "nobody" if the game is over.
 // Otherwise return null to continue playing.
 function checkWinner() {
@@ -47,21 +46,21 @@ function checkWinner() {
     for (let i = 0; i< 3; i++){
 
         if(gameGrid[i][0] === gameGrid[i][1] && gameGrid[i][0] === gameGrid[i][2] && gameGrid[i][0] != null){
-            return currentPlayer() === nought ? "noughts" : "crosses"
+            return GetWinner()
         }
 
         if(gameGrid[0][i] === gameGrid[1][i] && gameGrid[0][i] === gameGrid[2][i] && gameGrid[0][i] != null){
-            return currentPlayer() === nought ? "noughts" : "crosses"
+            return GetWinner()
         }
     }
 
     //check diagnols 
     if(gameGrid[0][0] === gameGrid[1][1] && gameGrid[0][0] === gameGrid[2][2] && gameGrid[0][0] != null) {
-        return currentPlayer() === nought ? "noughts" : "crosses"
+        return GetWinner()
     }
 
     if(gameGrid[0][2] === gameGrid[1][1] && gameGrid[0][2] === gameGrid[2][0] && gameGrid[0][2] != null) {
-        return currentPlayer() === nought ? "noughts" : "crosses"
+        return GetWinner()
     }
 
     if (turn === 8){
