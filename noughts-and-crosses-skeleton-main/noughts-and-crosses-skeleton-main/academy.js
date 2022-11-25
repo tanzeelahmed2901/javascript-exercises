@@ -13,6 +13,7 @@ let gameOver = false
 let illegalMove = false
 let player1Name
 let player2Name
+let isPlayingFriend
 
 function currentPlayer() {
     return turn % 2 === 0 ? nought : cross;
@@ -21,13 +22,28 @@ function currentPlayer() {
 const submitNamesButton = document.getElementById("submit-names-button")
 submitNamesButton.addEventListener("click", submitNames)
 
+const CPUButton = document.getElementById("chooseCPU")
+const friendButton = document.getElementById("chooseFriend")
+CPUButton.addEventListener("click", playingCPU)
+friendButton.addEventListener("click", showNameEntry)
+
+function playingCPU(event){
+    isPlayingFriend = false
+    alert("CPU Functionality not implemented yet. Please find some friends and reset the game :)")
+}
+
+function showNameEntry (event){
+    isPlayingFriend = true
+    document.getElementById("chooseOpponent").style.display="none";
+    document.getElementById("nameDiv").style.display="block";
+}
+
+//submit names and hide name inputs
 function submitNames(event){
     player1Name = document.getElementById("player1Name").value 
     player2Name = document.getElementById("player2Name").value
 
-    document.getElementById("player1Name").disabled = true;
-    document.getElementById("player2Name").disabled = true;
-    document.getElementById("submit-names-button").disabled = true;
+    document.getElementById("nameDiv").style.display="none";
 
     console.log(player1Name)
     console.log(player2Name)
@@ -37,27 +53,32 @@ function submitNames(event){
 // (inclusive) and update the game state.
 function takeTurn(row, column) {
     
-    if(turn === 0){
-        submitNames()
-    }
-    console.log("takeTurn was called with row: "+row+", column:"+column);
-
-    if(gameOver === true){
-        turn = 0
-        alert("Game over! Please reset to play again :)")
-        return false
-    }
+    if(isPlayingFriend){
+        if(turn === 0){
+            submitNames()
+        }
+        console.log("takeTurn was called with row: "+row+", column:"+column);
     
-    if(gameGrid[row][column]==null){
-        illegalMove = false
-        if(currentPlayer() === nought ){
-            gameGrid[row][column] = nought
-        }else if(currentPlayer() === cross){
-            gameGrid[row][column] = cross
+        if(gameOver === true){
+            turn = 0
+            alert("Game over! Please reset to play again :)")
+            return false
+        }
+        
+        if(gameGrid[row][column]==null){
+            illegalMove = false
+            if(currentPlayer() === nought ){
+                gameGrid[row][column] = nought
+            }else if(currentPlayer() === cross){
+                gameGrid[row][column] = cross
+            }
+        }else{
+            illegalMove = true
+            alert("Illegal move. Try again.")
         }
     }else{
         illegalMove = true
-        alert("Illegal move. Try again.")
+        alert("CPU Functionality not implemented yet. Please find some friends and reset the game :)")
     }
     
 }
@@ -78,7 +99,7 @@ function GetWinner(){
 // Otherwise return null to continue playing.
 function checkWinner() {
     console.log("checkWinner was called");
-    
+
     // for loop to check columns and rows 
     console.log('turn: '+currentPlayer())
     for (let i = 0; i< 3; i++){
@@ -94,7 +115,7 @@ function checkWinner() {
         }
     }
 
-    //check diaganols 
+    //check diagonals 
     if(gameGrid[0][0] === gameGrid[1][1] && gameGrid[0][0] === gameGrid[2][2] && gameGrid[0][0] != null) {
         gameOver = true
         return GetWinner()
@@ -113,8 +134,11 @@ function checkWinner() {
 
     if(!illegalMove){ //only increase turn count if legal move
         turn++
+        
     }
-    
+
+    console.log("TURN NUMBER: "+ turn)
+
     return null;
 }
 
