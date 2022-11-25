@@ -11,14 +11,35 @@ let cross = 'cross'
 let turn = 0
 let gameOver = false
 let illegalMove = false
+let player1Name
+let player2Name
 
 function currentPlayer() {
     return turn % 2 === 0 ? nought : cross;
 }
 
+const submitNamesButton = document.getElementById("submit-names-button")
+submitNamesButton.addEventListener("click", submitNames)
+
+function submitNames(event){
+    player1Name = document.getElementById("player1Name").value 
+    player2Name = document.getElementById("player2Name").value
+
+    document.getElementById("player1Name").disabled = true;
+    document.getElementById("player2Name").disabled = true;
+    document.getElementById("submit-names-button").disabled = true;
+
+    console.log(player1Name)
+    console.log(player2Name)
+}
+
 // Take the row and column number between 0 and 2 
 // (inclusive) and update the game state.
 function takeTurn(row, column) {
+    
+    if(turn === 0){
+        submitNames()
+    }
     console.log("takeTurn was called with row: "+row+", column:"+column);
 
     if(gameOver === true){
@@ -29,9 +50,9 @@ function takeTurn(row, column) {
     
     if(gameGrid[row][column]==null){
         illegalMove = false
-        if(currentPlayer() === nought){
+        if(currentPlayer() === nought ){
             gameGrid[row][column] = nought
-        }else{
+        }else if(currentPlayer() === cross){
             gameGrid[row][column] = cross
         }
     }else{
@@ -42,7 +63,15 @@ function takeTurn(row, column) {
 }
 
 function GetWinner(){
-    return currentPlayer() === nought ? "noughts" : "crosses"
+    if(currentPlayer() === nought && player1Name != null && player1Name != ""){
+        return player1Name
+    }
+    else if(currentPlayer() === cross && player2Name != null && player2Name != ""){
+        return player2Name
+    }else{
+        return currentPlayer() === nought ? "noughts" : "crosses"
+    }
+    
 }
 
 // Return either "noughts", "crosses" or "nobody" if the game is over.
@@ -65,7 +94,7 @@ function checkWinner() {
         }
     }
 
-    //check diagnols 
+    //check diaganols 
     if(gameGrid[0][0] === gameGrid[1][1] && gameGrid[0][0] === gameGrid[2][2] && gameGrid[0][0] != null) {
         gameOver = true
         return GetWinner()
@@ -110,6 +139,7 @@ if (typeof exports === 'object') {
         checkWinner,
         resetGame,
         getBoard,
+        submitNames,
     }
 } else {
     console.log("Running in Browser")

@@ -51,7 +51,7 @@ function positionClick(rowIndex, columnIndex, event) {
     drawBoard(board);
     const winner = checkWinner();
     if (winner) {
-        if (typeof winner !== "string" || !["noughts", "crosses", "nobody"].includes(winner)) {
+        if (typeof winner !== "string") {
             throw "Expecting 'checkWinner' to return null or one of the strings 'noughts', 'crosses' or 'nobody'. Actually received: " + winner;
         }
         const winnerName = document.getElementById("winner-name");
