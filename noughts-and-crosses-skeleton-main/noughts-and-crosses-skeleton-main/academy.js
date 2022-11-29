@@ -15,17 +15,19 @@ let player1Name
 let player2Name
 let isPlayingFriend
 
+//get buttons
+const submitNamesButton = document.getElementById("submit-names-button")
+const CPUButton = document.getElementById("chooseCPU")
+const friendButton = document.getElementById("chooseFriend")
+
+//assign buttons to a function
+submitNamesButton.addEventListener("click", submitNames)
+CPUButton.addEventListener("click", playingCPU)
+friendButton.addEventListener("click", showNameEntry)
+
 function currentPlayer() {
     return turn % 2 === 0 ? nought : cross;
 }
-
-const submitNamesButton = document.getElementById("submit-names-button")
-submitNamesButton.addEventListener("click", submitNames)
-
-const CPUButton = document.getElementById("chooseCPU")
-const friendButton = document.getElementById("chooseFriend")
-CPUButton.addEventListener("click", playingCPU)
-friendButton.addEventListener("click", showNameEntry)
 
 function playingCPU(event){
     isPlayingFriend = false
