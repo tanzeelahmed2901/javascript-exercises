@@ -8,7 +8,13 @@ const someAcademitesWithAges = [ // array of objects
 ]
 
 // Reduce the array to only the total age in months of all the doggie Academites
-// TODO
+const totaliser = (total, balance) => total + balance;
+const startingAge = 0;
+const sum = someAcademitesWithAges.reduce(function (accumulator, curValue){
+    return accumulator + curValue.age
+}, startingAge);
+
+console.log(sum)
 
 // Sort the array by the names (alphabetically)
 // Make a separate sorting function then use it
