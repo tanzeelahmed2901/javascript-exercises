@@ -1,0 +1,17 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Sample server file. For the npm-stop example see the process.title in the app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo 'no tests defined' && exit 1;",
+    "start": "node server.js &",
+    "stop": "pkill MyApp"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
